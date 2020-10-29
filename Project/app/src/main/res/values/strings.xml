@@ -20,4 +20,12 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
 
+    <string name="firstname">Vorname</string>
+    <string name="lastname">Nachname</string>
+    <string name="birthday">Geburtstag</string>
+    <string name="company">Arbeitgeber</string>
+    <string name="phone_number">Telefonummer</string>
+    <string name="adress">Adresse</string>
+    <string name="postcode">PLZ</string>
+    <string name="city">Ort</string>
 </resources>
