@@ -30,7 +30,7 @@ public class HomeActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
 
         Menu m = navigationView.getMenu();
-        MenuItem menuItem = m.add("Logout");
+        MenuItem menuItem = m.add(R.string.logout);
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -51,7 +51,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        //****************************
 
     }
 
