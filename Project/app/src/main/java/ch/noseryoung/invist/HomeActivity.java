@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -23,6 +25,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +49,16 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        TextView drawerName = findViewById(R.id.drawerName);
-        TextView drawerEmail = findViewById(R.id.drawerEmail);
 
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView drawerName = (TextView) headerView.findViewById(R.id.drawerName);
+        TextView drawerEmail = (TextView) headerView.findViewById(R.id.drawerEmail);
+        ImageView drawerUserImage = headerView.findViewById(R.id.draweruserImage);
+        drawerName.setText("Dennis Miceli");
+        drawerEmail.setText("dennis.miceli@hotmail.ch");
+
+        //drawerUserImage.setBackgroundResource(R.drawable.usericon);
 
 
 
