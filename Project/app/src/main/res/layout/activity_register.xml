@@ -46,21 +46,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textviewCompanyRegister" />
-
-    <EditText
-        android:id="@+id/textviewCompanyRegister"
-        android:layout_width="340dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/company"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textviewBirthdayRegister" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCompanyRegister" />
 
     <EditText
         android:id="@+id/textviewFirstnameRegister"
@@ -179,10 +165,12 @@
 
     <Spinner
         android:id="@+id/spinnerCompanyRegister"
-        android:layout_width="match_parent"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:spinnerMode="dropdown"
-        tools:layout_editor_absoluteX="4dp"
-        tools:layout_editor_absoluteY="704dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textviewBirthdayRegister" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
