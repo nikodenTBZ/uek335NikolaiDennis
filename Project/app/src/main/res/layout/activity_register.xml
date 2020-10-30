@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/textviewEmailRegister"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -30,10 +30,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+        app:layout_constraintTop_toBottomOf="@+id/textviewLastnameRegister" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName8"
+        android:id="@+id/textviewCompanyRegister"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -43,26 +43,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6" />
+        app:layout_constraintTop_toBottomOf="@+id/textviewBirthdayRegister" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName9"
+        android:id="@+id/textviewAdressRegister"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:autofillHints=".AUTOFILL_HINT_POSTAL_ADDRESS_STREET_ADDRESS"
         android:ems="10"
         android:hint="@string/adress"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName10" />
+        app:layout_constraintTop_toBottomOf="@+id/textviewPhoneNumberRegister" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/textviewLastnameRegister"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:autofillHints=".AUTOFILL_HINT_PERSON_NAME_FAMILY"
         android:ems="10"
         android:hint="@string/lastname"
         android:inputType="textPersonName"
@@ -72,7 +74,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textviewFirstnameRegister" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName6"
+        android:id="@+id/textviewBirthdayRegister"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -82,23 +84,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+        app:layout_constraintTop_toBottomOf="@+id/textviewPasswordRegister" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName10"
+        android:id="@+id/textviewPhoneNumberRegister"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:autofillHints=".AUTOFILL_HINT_PHONE_NUMBER"
         android:ems="10"
         android:hint="@string/phone_number"
         android:inputType="textPersonName|phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName8" />
+        app:layout_constraintTop_toBottomOf="@+id/textviewCompanyRegister" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/textviewPasswordRegister"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -108,7 +111,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/textviewEmailRegister" />
 
     <Button
         android:id="@+id/buttonRegister"
@@ -133,12 +136,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName9">
+        app:layout_constraintTop_toBottomOf="@+id/textviewAdressRegister">
 
         <EditText
-            android:id="@+id/editTextTextPersonName13"
+            android:id="@+id/textviewCityRegister"
             android:layout_width="162dp"
             android:layout_height="wrap_content"
+            android:autofillHints=".AUTOFILL_HINT_POSTAL_ADDRESS_REGION"
             android:ems="10"
             android:hint="@string/city"
             android:inputType="textPersonName"
@@ -146,9 +150,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName12"
+            android:id="@+id/textviewPostCodeRegister"
             android:layout_width="162dp"
             android:layout_height="45dp"
+            android:autofillHints=".AUTOFILL_HINT_POSTAL_CODE"
             android:ems="10"
             android:hint="@string/postcode"
             android:inputType="textPersonName"
