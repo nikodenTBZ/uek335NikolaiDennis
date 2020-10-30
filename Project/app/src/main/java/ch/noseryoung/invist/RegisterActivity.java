@@ -13,6 +13,9 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        //Remove Action Bar
+        getSupportActionBar().hide();
+
         Button buttonRegister = findViewById(R.id.buttonRegister);
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
