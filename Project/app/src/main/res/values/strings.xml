@@ -33,6 +33,7 @@
     <string name="back">BackIcon</string>
 
     <string-array name="companyArray">
+        <item>NoserYoung</item>
         <item>Accenture</item>
         <item>TBZ</item>
         <item>Google</item>
