@@ -29,4 +29,6 @@
     <string name="adress">Adresse</string>
     <string name="postcode">PLZ</string>
     <string name="city">Ort</string>
+
+    <string name="back">BackIcon</string>
 </resources>
