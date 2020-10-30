@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -17,7 +20,14 @@ public class RegisterActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         Button buttonRegister = findViewById(R.id.buttonRegister);
+        ImageView backButton = findViewById(R.id.backButton);
         buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openLoginActivity();
+            }
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openLoginActivity();
@@ -25,8 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void openLoginActivity(){
-        Intent loginActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(loginActivityIntent);
+    private void openLoginActivity() {
+        finish();
     }
 }
