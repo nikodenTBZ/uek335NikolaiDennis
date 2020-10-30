@@ -31,4 +31,13 @@
     <string name="city">Ort</string>
 
     <string name="back">BackIcon</string>
+
+    <string-array name="companyArray">
+        <item>Accenture</item>
+        <item>TBZ</item>
+        <item>Google</item>
+        <item>Nine</item>
+        <item>Six</item>
+    </string-array>
+
 </resources>
