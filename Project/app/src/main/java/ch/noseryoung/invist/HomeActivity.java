@@ -1,6 +1,7 @@
 package ch.noseryoung.invist;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -41,6 +42,7 @@ public class HomeActivity extends AppCompatActivity {
         MenuItem menuItem = m.add(R.string.logout).setIcon(R.drawable.logoutarrow);
 
 
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -67,6 +69,11 @@ public class HomeActivity extends AppCompatActivity {
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                SharedPreferences invistPrefs = getSharedPreferences("invistPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = invistPrefs.edit();
+                editor.remove("activeUser");
+                editor.apply();
+
                 Log.d(TAG,"Logout button clicked");
                 finish();
                 return false;

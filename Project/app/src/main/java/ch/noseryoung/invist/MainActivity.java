@@ -1,6 +1,8 @@
 package ch.noseryoung.invist;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         userDao = AppDatabase.getAppDb(getApplicationContext()).getUserDao();
 
+
         //Remove Action Bar
         getSupportActionBar().hide();
 
@@ -78,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (checkIfEmailIsInDb(email)) {
             if (userDao.getUser(email).getPassword().equals(password)) {
+                addToSharedPreferences(email);
                 openHomeActivity();
             } else {
                 showErrorLoginMessage();
@@ -87,9 +91,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void addToSharedPreferences(String email){
 
+    public void addToSharedPreferences(String email){
+        SharedPreferences invistPrefs = getSharedPreferences("invistPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = invistPrefs.edit();
+        editor.putString("activeUser", email);
+        editor.apply();
     }
+
+
 
     private void showErrorLoginMessage() {
         findViewById(R.id.wrongEmailPassword).setVisibility(View.VISIBLE);
@@ -174,4 +184,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onDestroy: MainActivity");
         super.onDestroy();
     }
+
+
 }
