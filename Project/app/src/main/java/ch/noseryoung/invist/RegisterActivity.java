@@ -25,6 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         userDao = AppDatabase.getAppDb(getApplicationContext()).getUserDao();
+
         //Add a back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.register);
@@ -68,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
         EditText birthday = findViewById(R.id.textviewBirthdayRegister);
         Spinner company = findViewById(R.id.spinnerCompanyRegister);
         EditText phoneNumber = findViewById(R.id.textviewPhoneNumberRegister);
-        EditText adress = findViewById(R.id.textviewAdressRegister);
+        EditText address = findViewById(R.id.textviewAdressRegister);
         EditText city = findViewById(R.id.textviewCityRegister);
         EditText postcode = findViewById(R.id.textviewPostCodeRegister);
 
@@ -79,13 +80,13 @@ public class RegisterActivity extends AppCompatActivity {
         String sBirthday = birthday.getText().toString();
         String sCompany = company.getSelectedItem().toString();
         String sPhoneNumber = phoneNumber.getText().toString();
-        String sAdress = adress.getText().toString();
+        String sAddress = address.getText().toString();
         String sCity = city.getText().toString();
         String sPostcode = postcode.getText().toString();
 
         //checks if every Field isnt empty then return true
         return !sFirstName.matches("") && !sLastName.matches("") && !sEmail.matches("") && !sPassword.matches("") && !sBirthday.matches("") &&
-                !sCompany.matches("") && !sPhoneNumber.matches("") && !sAdress.matches("") && !sCity.matches("") && !sPostcode.matches("");
+                !sCompany.matches("") && !sPhoneNumber.matches("") && !sAddress.matches("") && !sCity.matches("") && !sPostcode.matches("");
 
     }
 
