@@ -2,6 +2,7 @@ package ch.noseryoung.invist;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.Menu;
 import android.view.View;
@@ -23,6 +24,7 @@ import androidx.appcompat.widget.Toolbar;
 
 public class HomeActivity extends AppCompatActivity {
 
+    private static final String TAG = "ch.noseryoung.invist.HomeActivity";
     private AppBarConfiguration mAppBarConfiguration;
 
     @SuppressLint("SetTextI18n")
@@ -65,6 +67,7 @@ public class HomeActivity extends AppCompatActivity {
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                Log.d(TAG,"Logout button clicked");
                 finish();
                 return false;
             }

@@ -13,6 +13,7 @@
     <color name="accent_blue_primary">#00e8c0</color>
     <color name="accent_blue_light">#68fff3</color>
     <color name="accent_blue_dark">#00b590</color>
+    <color name="red_error">#d32f2f</color>
 
 
 </resources>
