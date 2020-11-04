@@ -35,6 +35,8 @@
 
     <string name="back">BackIcon</string>
 
+    <string name="notAllFieldsFilledError">"Bitte alle Felder ausfüllen"</string>
+
     <string-array name="companyArray">
         <item>NoserYoung</item>
         <item>Accenture</item>
@@ -43,5 +45,7 @@
         <item>Nine</item>
         <item>Six</item>
     </string-array>
+
+
 
 </resources>
