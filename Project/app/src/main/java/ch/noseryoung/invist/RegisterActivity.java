@@ -1,24 +1,15 @@
 package ch.noseryoung.invist;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ActionBar;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
-
-import org.w3c.dom.Text;
+import androidx.appcompat.app.AppCompatActivity;
 
 import ch.noseryoung.invist.persistence.AppDatabase;
 import ch.noseryoung.invist.persistence.UserDao;
@@ -36,7 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
         userDao = AppDatabase.getAppDb(getApplicationContext()).getUserDao();
         //Add a back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Register");
+        getSupportActionBar().setTitle(R.string.register);
 
         Spinner spinner = findViewById(R.id.spinnerCompanyRegister);
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(
@@ -47,24 +38,26 @@ public class RegisterActivity extends AppCompatActivity {
 
         Button buttonRegister = findViewById(R.id.buttonRegister);
 
+
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EditText email = findViewById(R.id.textviewEmailRegister);
                 String sEmail = email.getText().toString();
-                if(!AreAllFieldsFilled()){
+                if (!AreAllFieldsFilled()) {
                     TextView fieldsEmpty = findViewById(R.id.registerErrorTextView);
                     fieldsEmpty.setText(R.string.notAllFieldsFilledError);
-                } else if (!checkIfEmailisUnique(sEmail)){
+                    Log.d(TAG, "ERROR, not all Fields are Filled");
+                } else if (checkIfEmailIsInDb(sEmail)) {
                     TextView fieldsEmpty = findViewById(R.id.registerErrorTextView);
-                    fieldsEmpty.setText(R.string.notAllFieldsFilledError);
+                    fieldsEmpty.setText(R.string.EmailAlreadyExist);
+                    Log.d(TAG, "ERROR, Email exist already");
+                } else {
+                    registerButtonAction();
+                    Log.d(TAG, "Registerd Sucessfully");
                 }
-                registerButtonAction();
             }
         });
-
-        //TextView errorMessage = findViewById(R.id.registerErrorTextView);
-        //errorMessage.setText("falscher Benutzer");
     }
 
     public boolean AreAllFieldsFilled() {
@@ -96,8 +89,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    public boolean checkIfEmailisUnique(String email) {
-        return userDao.getUser(email) == null;
+    private boolean checkIfEmailIsInDb(String email) {
+        return userDao.getUser(email) != null;
     }
 
     private void registerButtonAction() {
