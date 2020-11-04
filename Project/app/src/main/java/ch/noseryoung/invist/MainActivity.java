@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         Log.d(TAG, "onStart: MainActivity");
+        getAllUserFromDB();
         super.onStart();
     }
 
@@ -74,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
         String email = emailTextView.getText().toString();
         TextView passwordTextView = (TextView) findViewById(R.id.passwordLogin);
         String password = passwordTextView.getText().toString();
-
 
         if (checkIfEmailIsInDb(email)) {
             if (userDao.getUser(email).getPassword().equals(password)) {
@@ -128,7 +128,15 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "Get all Users from DB");
 
         for (User userTemp : userList) {
+            System.out.println(userTemp.getFirstname());
+            System.out.println(userTemp.getLastname());
             System.out.println(userTemp.getEmail());
+            System.out.println(userTemp.getBirthday());
+            System.out.println(userTemp.getCompany());
+            System.out.println(userTemp.getAddress());
+            System.out.println(userTemp.getCity());
+            System.out.println(userTemp.getPostcode());
+
         }
     }
 
