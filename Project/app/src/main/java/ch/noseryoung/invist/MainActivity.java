@@ -75,9 +75,6 @@ public class MainActivity extends AppCompatActivity {
         TextView passwordTextView = (TextView) findViewById(R.id.passwordLogin);
         String password = passwordTextView.getText().toString();
 
-        if (email.equals("")) {
-            System.out.println("null");
-        }
 
         if (checkIfEmailIsInDb(email)) {
             if (userDao.getUser(email).getPassword().equals(password)) {
@@ -103,21 +100,13 @@ public class MainActivity extends AppCompatActivity {
         if (!checkIfEmailIsInDb(email)) {
 
             //================================================//
-            User userDennis = new User("dennis.miceli@hotmail.ch");
+            User userDennis = new User("dennis.miceli@hotmail.ch", "Dennis", "Miceli", "123456", new Date(2003,8,2), "Accenture", "076 429 66 80", "Bahnhofstrasse 15", "Altendorf", "8852");
 
             Log.d(TAG, "Created new User");
             //================================================//
-            userDennis.setFirstname("Dennis");
-            userDennis.setLastname("Miceli");
-            Log.d(TAG, "Added First and Lastname to User");
-            //================================================//
-            userDennis.setBirthday(new Date());
-            Log.d(TAG, "Added Date to User");
-            //================================================//
-            userDennis.setPassword("123456");
-            Log.d(TAG, "Added Passwort (In String)");
-            //================================================//
+
             userDao.insertUser(userDennis);
+            Log.d(TAG, "Insert new User to DB");
             //================================================//
         }
     }
@@ -125,38 +114,12 @@ public class MainActivity extends AppCompatActivity {
     public void insertDummyNikolai(String email) {
         if (!checkIfEmailIsInDb(email)) {
             //================================================//
-            User userNikolai = new User("nikolai.schunk@gmail.com");
+            User userNikolai = new User("nikolai.schunk@gmail.com","Nikolai","Schunk","ABC123", new Date(2003, 10, 29),"Accenture", "078 406 73 65", "Hohenbühlstrasse 8", "Zürich", "8032");
             Log.d(TAG, "Created new User");
-            //================================================//
-            userNikolai.setFirstname("Nikolai");
-            userNikolai.setLastname("Schunk");
-            Log.d(TAG, "Added First and Lastname to user");
-            //================================================//
-            userNikolai.setBirthday(new Date(2003, 11, 29));
-            Log.d(TAG, "Added Date to User");
-            //================================================//
-            userNikolai.setPassword("ABC123");
-            Log.d(TAG, "Added Passwort (In String)");
-            //================================================//
-            userNikolai.setCompany("Accenture");
-            Log.d(TAG, "Added Company");
-            //================================================//
-            userNikolai.setPhoneNumber("078 406 73 65");
-            Log.d(TAG, "Added Phone Number");
-            //================================================//
-            userNikolai.setAddress("Hohenbühlstrasse 8");
-            Log.d(TAG, "Added Adress");
-            //================================================//
-            userNikolai.setCity("Zürich");
-            Log.d(TAG, "Added City");
-            //================================================//
-            userNikolai.setPostcode(8032);
-            Log.d(TAG, "Added PostCode");
             //================================================//
             userDao.insertUser(userNikolai);
             Log.d(TAG, "Insert User to DB");
             //================================================//
-            getAllUserFromDB();
         }
     }
 
