@@ -141,16 +141,15 @@
         android:id="@+id/buttonRegister"
         android:layout_width="207dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@color/blue_primary"
         android:outlineAmbientShadowColor="#FFFFFF"
         android:text="@string/register"
         android:textColor="@color/white"
         app:cornerRadius="@dimen/cardview_default_radius"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/registerErrorTextView" />
 
     <Spinner
         android:id="@+id/spinnerCompanyRegister"
@@ -161,5 +160,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textviewBirthdayRegister" />
+
+    <TextView
+        android:id="@+id/registerErrorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/blank"
+        android:textColor="@color/red_error"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

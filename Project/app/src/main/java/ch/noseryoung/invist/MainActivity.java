@@ -9,15 +9,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Date;
+import java.util.List;
+
+import ch.noseryoung.invist.model.User;
+import ch.noseryoung.invist.persistence.AppDatabase;
+import ch.noseryoung.invist.persistence.UserDao;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "ch.noseryoung.invist.MainActivity";
+    private UserDao userDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "Create MainActivity");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        userDao = AppDatabase.getAppDb(getApplicationContext()).getUserDao();
 
         //Remove Action Bar
         getSupportActionBar().hide();
@@ -39,6 +49,41 @@ public class MainActivity extends AppCompatActivity {
                 openHomeActivity();
             }
         });
+
+
+        insertDummy("dennis.miceli@hotmail.ch");
+
+
+    }
+
+    public boolean checkIfEmailisUnique(String email){
+
+        return userDao.getUser(email) == null;
+    }
+
+    public void insertDummy(String email){
+
+        if (checkIfEmailisUnique(email)){
+            User user = new User("dennis.miceli@hotmail.ch");
+            Log.d(TAG,"Created new User");
+
+            user.setFirstname("Dennis");
+            user.setLastname("Miceli");
+            Log.d(TAG,"Added name and firstname to User");
+            user.setBirthday(new Date());
+            Log.d(TAG,"Added Date to User");
+
+            userDao.insertUser(user);
+            Log.d(TAG,"Insert User to DB");
+        }
+
+
+        List<User> userList = userDao.getAll();
+        Log.d(TAG,"Get all Users from DB");
+
+        for (User userTemp : userList){
+            System.out.println(userTemp.getEmail());
+        }
     }
 
     /**
