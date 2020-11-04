@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         buttonLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validateFields();
+                validateFieldsAndLogin();
             }
         });
 
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void validateFields() {
+    private void validateFieldsAndLogin() {
 
         TextView emailTextView = (TextView) findViewById(R.id.emailLogin);
         String email = emailTextView.getText().toString();
@@ -85,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
         } else {
             showErrorLoginMessage();
         }
+    }
+
+    public void addToSharedPreferences(String email){
 
     }
 
