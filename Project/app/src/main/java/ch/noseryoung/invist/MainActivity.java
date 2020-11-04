@@ -1,13 +1,13 @@
 package ch.noseryoung.invist;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Date;
 import java.util.List;
@@ -20,6 +20,18 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "ch.noseryoung.invist.MainActivity";
     private UserDao userDao;
+
+    @Override
+    protected void onResume() {
+        Log.d(TAG, "onResume: MainActivity");
+        super.onResume();
+    }
+
+    @Override
+    protected void onStart() {
+        Log.d(TAG, "onStart: MainActivity");
+        super.onStart();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,21 +58,47 @@ public class MainActivity extends AppCompatActivity {
         buttonLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openHomeActivity();
+                validateFields();
             }
         });
 
-        insertDummy("dennis.miceli@hotmail.ch");
-        insertDummy("nikolai.schunk@gmail.com");
+        insertDummyDennis("dennis.miceli@hotmail.ch");
+        insertDummyNikolai("nikolai.schunk@gmail.com");
+    }
+
+    private void validateFields() {
+
+        TextView emailTextView = (TextView) findViewById(R.id.emailLogin);
+        String email = emailTextView.getText().toString();
+        TextView passwordTextView = (TextView) findViewById(R.id.passwordLogin);
+        String password = passwordTextView.getText().toString();
+
+        if (email.equals("")){
+            System.out.println("null");
+        }
+
+        if (checkIfEmailIsInDb(email)) {
+            if (userDao.getUser(email).getPassword().equals(password)) {
+                openHomeActivity();
+            } else {
+                showErrorLoginMessage();
+            }
+        } else {
+            showErrorLoginMessage();
+        }
 
     }
 
-    public boolean checkIfEmailisUnique(String email) {
-        return userDao.getUser(email) == null;
+    private void showErrorLoginMessage() {
+        findViewById(R.id.wrongEmailPassword).setVisibility(View.VISIBLE);
     }
 
-    public void insertDummy(String email) {
-        if (checkIfEmailisUnique(email)) {
+    private boolean checkIfEmailIsInDb(String email) {
+        return userDao.getUser(email) != null;
+    }
+
+    public void insertDummyDennis(String email) {
+        if (!checkIfEmailIsInDb(email)) {
 
             //================================================//
             User userDennis = new User("dennis.miceli@hotmail.ch");
@@ -73,7 +111,15 @@ public class MainActivity extends AppCompatActivity {
             userDennis.setBirthday(new Date());
             Log.d(TAG, "Added Date to User");
             //================================================//
-
+            userDennis.setPassword("123456");
+            Log.d(TAG, "Added Passwort (In String)");
+            //================================================//
+            userDao.insertUser(userDennis);
+            //================================================//
+        }
+    }
+    public void insertDummyNikolai(String email){
+        if (!checkIfEmailIsInDb(email)) {
             //================================================//
             User userNikolai = new User("nikolai.schunk@gmail.com");
             Log.d(TAG, "Created new User");
@@ -103,7 +149,6 @@ public class MainActivity extends AppCompatActivity {
             userNikolai.setPostcode(8032);
             Log.d(TAG, "Added PostCode");
             //================================================//
-            userDao.insertUser(userDennis);
             userDao.insertUser(userNikolai);
             Log.d(TAG, "Insert User to DB");
             //================================================//
@@ -140,4 +185,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onPause() {
+        findViewById(R.id.wrongEmailPassword).setVisibility(View.INVISIBLE);
+        super.onPause();
+    }
 }
