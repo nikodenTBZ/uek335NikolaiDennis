@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
         insertDummyDennis("dennis.miceli@hotmail.ch");
         insertDummyNikolai("nikolai.schunk@gmail.com");
+
+
     }
 
     private void validateFields() {
@@ -102,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
             //================================================//
             User userDennis = new User("dennis.miceli@hotmail.ch");
+
             Log.d(TAG, "Created new User");
             //================================================//
             userDennis.setFirstname("Dennis");
@@ -189,5 +192,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         findViewById(R.id.wrongEmailPassword).setVisibility(View.INVISIBLE);
         super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.d(TAG, "onDestroy: MainActivity");
+        super.onDestroy();
     }
 }
