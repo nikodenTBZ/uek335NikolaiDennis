@@ -20,28 +20,46 @@ public class User {
 
 
     @ColumnInfo(name = "first_name")
+    @NonNull
     private String firstname;
 
     @ColumnInfo(name = "last_name")
+    @NonNull
     private String lastname;
 
+    @NonNull
     private String password;
 
+    @NonNull
     private Date birthday;
 
+    @NonNull
     private String company;
 
     @ColumnInfo(name = "phone_number")
+    @NonNull
     private String phoneNumber;
 
+    @NonNull
     private String address;
 
+    @NonNull
     private String city;
 
-    private int postcode;
+    @NonNull
+    private String postcode;
 
-    public User(@NonNull String email) {
+    public User(@NonNull String email, @NonNull String firstname, @NonNull String lastname, @NonNull String password, @NonNull Date birthday, @NonNull String company, @NonNull String phoneNumber, @NonNull String address, @NonNull String city, @NonNull String postcode) {
         this.email = email;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.password = password;
+        this.birthday = birthday;
+        this.company = company;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.city = city;
+        this.postcode = postcode;
     }
 
     public String getFirstname() {
@@ -116,11 +134,11 @@ public class User {
         this.city = city;
     }
 
-    public int getPostcode() {
+    public String getPostcode() {
         return postcode;
     }
 
-    public void setPostcode(int postcode) {
+    public void setPostcode(String postcode) {
         this.postcode = postcode;
     }
 }
