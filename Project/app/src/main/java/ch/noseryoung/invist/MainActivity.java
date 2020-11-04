@@ -1,13 +1,13 @@
 package ch.noseryoung.invist;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Date;
 import java.util.List;
@@ -20,6 +20,18 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "ch.noseryoung.invist.MainActivity";
     private UserDao userDao;
+
+    @Override
+    protected void onResume() {
+        Log.d(TAG, "onResume: MainActivity");
+        super.onResume();
+    }
+
+    @Override
+    protected void onStart() {
+        Log.d(TAG, "onStart: MainActivity");
+        super.onStart();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,42 +58,69 @@ public class MainActivity extends AppCompatActivity {
         buttonLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openHomeActivity();
+                validateFields();
             }
         });
 
 
-        insertDummy("dennis.miceli@hotmail.ch");
-
+        //insertDummy("dennis.miceli@hotmail.ch");
 
     }
 
-    public boolean checkIfEmailisUnique(String email){
+    private void validateFields() {
 
-        return userDao.getUser(email) == null;
+        TextView emailTextView = (TextView) findViewById(R.id.emailLogin);
+        String email = emailTextView.getText().toString();
+        TextView passwordTextView = (TextView) findViewById(R.id.passwordLogin);
+        String password = passwordTextView.getText().toString();
+
+        if (email.equals("")){
+            System.out.println("null");
+        }
+
+        if (checkIfEmailIsInDb(email)) {
+            if (userDao.getUser(email).getPassword().equals(password)) {
+                openHomeActivity();
+            } else {
+                showErrorLoginMessage();
+            }
+        } else {
+            showErrorLoginMessage();
+        }
+
     }
 
-    public void insertDummy(String email){
+    private void showErrorLoginMessage() {
+        findViewById(R.id.wrongEmailPassword).setVisibility(View.VISIBLE);
+    }
 
-        if (checkIfEmailisUnique(email)){
-            User user = new User("dennis.miceli@hotmail.ch");
-            Log.d(TAG,"Created new User");
+    private boolean checkIfEmailIsInDb(String email) {
+
+        return userDao.getUser(email) != null;
+    }
+
+    private void insertDummy(String email) {
+
+        if (!checkIfEmailIsInDb(email)) {
+            User user = new User(email);
+            Log.d(TAG, "Created new User");
 
             user.setFirstname("Dennis");
             user.setLastname("Miceli");
-            Log.d(TAG,"Added name and firstname to User");
+            user.setPassword("123456");
+            Log.d(TAG, "Added name and firstname and Password to User");
             user.setBirthday(new Date());
-            Log.d(TAG,"Added Date to User");
+            Log.d(TAG, "Added Date to User");
 
             userDao.insertUser(user);
-            Log.d(TAG,"Insert User to DB");
+            Log.d(TAG, "Insert User to DB");
         }
 
 
         List<User> userList = userDao.getAll();
-        Log.d(TAG,"Get all Users from DB");
+        Log.d(TAG, "Get all Users from DB");
 
-        for (User userTemp : userList){
+        for (User userTemp : userList) {
             System.out.println(userTemp.getEmail());
         }
     }
@@ -90,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
      * Changes to the HomeActivity
      */
     private void openHomeActivity() {
-        Log.i(TAG,"Open the HomeActivity");
+        Log.i(TAG, "Open the HomeActivity");
         //Change to Home-Activity
         Intent homeActivityIntent = new Intent(getApplicationContext(), HomeActivity.class);
         startActivity(homeActivityIntent);
@@ -100,10 +139,15 @@ public class MainActivity extends AppCompatActivity {
      * Changes to the RegisterActivity
      */
     private void openRegisterActivity() {
-        Log.i(TAG,"Open the RegisterActivity");
+        Log.i(TAG, "Open the RegisterActivity");
         Intent registerActivityIntent = new Intent(getApplicationContext(), RegisterActivity.class);
         startActivity(registerActivityIntent);
     }
 
 
+    @Override
+    protected void onPause() {
+        findViewById(R.id.wrongEmailPassword).setVisibility(View.INVISIBLE);
+        super.onPause();
+    }
 }

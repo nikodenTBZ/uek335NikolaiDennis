@@ -56,4 +56,5 @@ public class RegisterActivity extends AppCompatActivity {
         Log.d(TAG,"Back to Login with Register button");
         finish();
     }
+
 }
