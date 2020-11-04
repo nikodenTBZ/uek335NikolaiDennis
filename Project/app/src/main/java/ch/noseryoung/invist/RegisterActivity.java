@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import ch.noseryoung.invist.model.User;
 import ch.noseryoung.invist.persistence.AppDatabase;
 import ch.noseryoung.invist.persistence.UserDao;
 
@@ -42,25 +43,12 @@ public class RegisterActivity extends AppCompatActivity {
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText email = findViewById(R.id.textviewEmailRegister);
-                String sEmail = email.getText().toString();
-                if (!AreAllFieldsFilled()) {
-                    TextView fieldsEmpty = findViewById(R.id.registerErrorTextView);
-                    fieldsEmpty.setText(R.string.notAllFieldsFilledError);
-                    Log.d(TAG, "ERROR, not all Fields are Filled");
-                } else if (checkIfEmailIsInDb(sEmail)) {
-                    TextView fieldsEmpty = findViewById(R.id.registerErrorTextView);
-                    fieldsEmpty.setText(R.string.EmailAlreadyExist);
-                    Log.d(TAG, "ERROR, Email exist already");
-                } else {
-                    registerButtonAction();
-                    Log.d(TAG, "Registerd Sucessfully");
-                }
+                validateAndFillInDb();
             }
         });
     }
 
-    public boolean AreAllFieldsFilled() {
+    public void validateAndFillInDb() {
         EditText firstName = findViewById(R.id.textviewFirstnameRegister);
         EditText lastName = findViewById(R.id.textviewLastnameRegister);
         EditText email = findViewById(R.id.textviewEmailRegister);
@@ -82,6 +70,23 @@ public class RegisterActivity extends AppCompatActivity {
         String sAdress = adress.getText().toString();
         String sCity = city.getText().toString();
         String sPostcode = postcode.getText().toString();
+
+        if (!AreAllFieldsFilled(sFirstName, sLastName, sEmail, sPassword, sBirthday, sCompany, sPhoneNumber, sAdress, sCity, sPostcode)) {
+            TextView fieldsEmpty = findViewById(R.id.registerErrorTextView);
+            fieldsEmpty.setText(R.string.notAllFieldsFilledError);
+            Log.d(TAG, "ERROR, not all Fields are Filled");
+        } else if (checkIfEmailIsInDb(sEmail)) {
+            TextView fieldsEmpty = findViewById(R.id.registerErrorTextView);
+            fieldsEmpty.setText(R.string.EmailAlreadyExist);
+            Log.d(TAG, "ERROR, Email exist already");
+        } else {
+            //User user = new User()
+            registerButtonAction();
+            Log.d(TAG, "Registered Successfully");
+        }
+    }
+
+    public boolean AreAllFieldsFilled(String sFirstName, String sLastName, String sEmail, String sPassword, String sBirthday, String sCompany, String sPhoneNumber, String sAdress, String sCity, String sPostcode) {
 
         //checks if every Field isnt empty then return true
         return !sFirstName.matches("") && !sLastName.matches("") && !sEmail.matches("") && !sPassword.matches("") && !sBirthday.matches("") &&
