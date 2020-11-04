@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         TextView passwordTextView = (TextView) findViewById(R.id.passwordLogin);
         String password = passwordTextView.getText().toString();
 
-        if (email.equals("")){
+        if (email.equals("")) {
             System.out.println("null");
         }
 
@@ -118,7 +118,8 @@ public class MainActivity extends AppCompatActivity {
             //================================================//
         }
     }
-    public void insertDummyNikolai(String email){
+
+    public void insertDummyNikolai(String email) {
         if (!checkIfEmailIsInDb(email)) {
             //================================================//
             User userNikolai = new User("nikolai.schunk@gmail.com");
