@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Date;
+
 import ch.noseryoung.invist.model.User;
 import ch.noseryoung.invist.persistence.AppDatabase;
 import ch.noseryoung.invist.persistence.UserDao;
@@ -81,7 +83,8 @@ public class RegisterActivity extends AppCompatActivity {
             fieldsEmpty.setText(R.string.EmailAlreadyExist);
             Log.d(TAG, "ERROR, Email exist already");
         } else {
-            //User user = new User()
+            Date actualBirthday = splitBirthdayString(sBirthday);
+            User user = new User(sFirstName, sLastName, sEmail, sPassword, actualBirthday, sCompany, sPhoneNumber, sAddress, sCity, sPostcode);
             registerButtonAction();
             Log.d(TAG, "Registered Successfully");
         }
@@ -92,6 +95,15 @@ public class RegisterActivity extends AppCompatActivity {
         //checks if every Field isnt empty then return true
         return !sFirstName.matches("") && !sLastName.matches("") && !sEmail.matches("") && !sPassword.matches("") && !sBirthday.matches("") &&
                 !sCompany.matches("") && !sPhoneNumber.matches("") && !sAddress.matches("") && !sCity.matches("") && !sPostcode.matches("");
+
+    }
+
+    public Date splitBirthdayString(String birthday) {
+        String[] splitBday = birthday.split(".");
+        int day = Integer.parseInt(splitBday[0]);
+        int month = Integer.parseInt(splitBday[1]);
+        int year = Integer.parseInt(splitBday[2]);
+        return new Date(year, month -1, day);
 
     }
 
