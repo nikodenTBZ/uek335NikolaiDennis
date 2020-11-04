@@ -23,7 +23,6 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
 
-
     <string name="firstname">Vorname</string>
     <string name="lastname">Nachname</string>
     <string name="birthday">Geburtstag</string>
@@ -33,9 +32,8 @@
     <string name="postcode">PLZ</string>
     <string name="city">Ort</string>
 
-    <string name="back">BackIcon</string>
-
-    <string name="notAllFieldsFilledError">"Bitte alle Felder ausfüllen"</string>
+    <string name="notAllFieldsFilledError">Bitte alle Felder ausfüllen</string>
+    <string name="EmailAlreadyExist">Diese Email-Adresse wurde schon einem Konto zugewiesen</string>
 
     <string-array name="companyArray">
         <item>NoserYoung</item>
@@ -45,7 +43,6 @@
         <item>Nine</item>
         <item>Six</item>
     </string-array>
-
 
 
 </resources>
