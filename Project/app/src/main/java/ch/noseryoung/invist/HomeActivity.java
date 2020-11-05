@@ -4,25 +4,21 @@ import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
-import com.google.android.material.navigation.NavigationView;
-
-import androidx.lifecycle.MutableLiveData;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-import org.w3c.dom.Text;
+import com.google.android.material.navigation.NavigationView;
 
 import ch.noseryoung.invist.model.User;
 import ch.noseryoung.invist.persistence.AppDatabase;
@@ -73,15 +69,20 @@ public class HomeActivity extends AppCompatActivity {
                 editor.remove("activeUser");
                 editor.apply();
 
-                Log.d(TAG,"Logout button clicked");
+                Log.d(TAG, "Logout button clicked");
                 finish();
                 return false;
             }
         });
     }
 
+    /**
+     * Fills in the properties to the Drawer
+     *
+     * @param navigationView
+     */
     @SuppressLint("SetTextI18n")
-    private void fillProperties(NavigationView navigationView){
+    private void fillProperties(NavigationView navigationView) {
         View headerView = navigationView.getHeaderView(0);
         TextView drawerName = (TextView) headerView.findViewById(R.id.drawerName);
         TextView drawerEmail = (TextView) headerView.findViewById(R.id.drawerEmail);
@@ -91,7 +92,6 @@ public class HomeActivity extends AppCompatActivity {
         String email = invistPrefs.getString("activeUser", "default");
 
         User user = userDao.getUser(email);
-
 
 
         drawerName.setText(user.getFirstname() + " " + user.getLastname());

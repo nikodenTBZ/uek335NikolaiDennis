@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         Log.d(TAG, "onStart: MainActivity");
-        getAllUserFromDB();
+        //getAllUserFromDB();
         super.onStart();
     }
 
@@ -73,14 +73,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         //Method to fill in users
         //insertDummyDennis();
-        //insertDummyNikolai();
-
     }
 
-
+    /**
+     * Checks if the Email and the Password match with the ones in the database
+     */
     private void validateFieldsAndLogin() {
 
         TextView emailTextView = (TextView) findViewById(R.id.emailLogin);
@@ -89,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         String password = passwordTextView.getText().toString();
 
         if (checkIfEmailIsInDb(email)) {
-            if (BCrypt.checkpw(password,userDao.getUser(email).getPassword())) {
+            if (BCrypt.checkpw(password, userDao.getUser(email).getPassword())) {
                 addToSharedPreferences(email);
                 openHomeActivity();
             } else {
@@ -101,6 +100,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Adds the email to the Shared Preferences
+     *
+     * @param email The email to add to the shared preferences
+     */
     private void addToSharedPreferences(String email) {
         SharedPreferences invistPrefs = getSharedPreferences("invistPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = invistPrefs.edit();
@@ -109,32 +113,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Shows the Error Message
+     */
     private void showErrorLoginMessage() {
         findViewById(R.id.wrongEmailPassword).setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Checks if the email is in the database
+     *
+     * @param email
+     * @return a boolean if the email is in the database
+     */
     private boolean checkIfEmailIsInDb(String email) {
         return userDao.getUser(email) != null;
     }
 
-
-
-
-    private void getAllUserFromDB() {
-        List<User> userList = userDao.getAll();
-        Log.d(TAG, "Get all Users from DB");
-
-        for (User userTemp : userList) {
-            System.out.println(userTemp.getFirstname());
-            System.out.println(userTemp.getLastname());
-            System.out.println(userTemp.getEmail());
-            System.out.println(userTemp.getBirthday());
-            System.out.println(userTemp.getCompany());
-            System.out.println(userTemp.getAddress());
-            System.out.println(userTemp.getCity());
-            System.out.println(userTemp.getPostcode());
-        }
-    }
 
     /**
      * Changes to the HomeActivity
@@ -168,12 +163,15 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    private void insertDummyDennis() {
+    /**
+     * Fill in a test user
+     */
+    private void insertDummy() {
         String email = "th3craft3r293@gmail.com";
         if (!checkIfEmailIsInDb(email)) {
 
             //================================================//
-            User userDennis = new User(email, "Dennis", "Miceli", BCrypt.hashpw("123456", BCrypt.gensalt()), new Date(2003, 8, 2), "Accenture", "076 429 66 80", "Bahnhofstrasse 15", "Altendorf", "8852");
+            User userDennis = new User(email, "Dennis", "M", BCrypt.hashpw("123456", BCrypt.gensalt()), new Date(2003, 8, 2), "Accenture", "", "", "", "");
 
             Log.d(TAG, "Created new User");
             //================================================//
@@ -182,18 +180,37 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "Insert new User to DB");
             //================================================//
         }
-    }
 
-    private void insertDummyNikolai() {
-        String email = "nikolai.schunk@gmail.com";
+        email = "nikolai.schunk@gmail.com";
         if (!checkIfEmailIsInDb(email)) {
             //================================================//
-            User userNikolai = new User(email, "Nikolai", "Schunk", BCrypt.hashpw("ABC123",BCrypt.gensalt()), new Date(2003, 10, 29), "Accenture", "078 406 73 65", "Hohenbühlstrasse 8", "Zürich", "8032");
+            User userNikolai = new User(email, "Nikolai", "S", BCrypt.hashpw("ABC123", BCrypt.gensalt()), new Date(2003, 10, 29), "Accenture", "", "", "", "");
             Log.d(TAG, "Created new User");
             //================================================//
             userDao.insertUser(userNikolai);
             Log.d(TAG, "Insert User to DB");
             //================================================//
+        }
+    }
+
+
+    /**
+     * Lists all users from the database
+     * Only for testing
+     */
+    private void getAllUserFromDB() {
+        List<User> userList = userDao.getAll();
+        Log.d(TAG, "Get all Users from DB");
+
+        for (User userTemp : userList) {
+            System.out.println(userTemp.getFirstname());
+            System.out.println(userTemp.getLastname());
+            System.out.println(userTemp.getEmail());
+            System.out.println(userTemp.getBirthday());
+            System.out.println(userTemp.getCompany());
+            System.out.println(userTemp.getAddress());
+            System.out.println(userTemp.getCity());
+            System.out.println(userTemp.getPostcode());
         }
     }
 

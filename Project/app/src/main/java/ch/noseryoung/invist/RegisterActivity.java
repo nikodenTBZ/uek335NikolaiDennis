@@ -55,6 +55,9 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Validates all fields and fill them if correct to the database
+     */
     private void validateAndFillInDb() {
         TextView errorTextView = findViewById(R.id.registerErrorTextView);
 
@@ -145,6 +148,17 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Checks if all mandatory fields are filled
+     *
+     * @param sFirstName
+     * @param sLastName
+     * @param sEmail
+     * @param sPassword
+     * @param sBirthday
+     * @param sCompany
+     * @return a boolean
+     */
     private boolean areAllFieldsFilled(String sFirstName, String sLastName, String
             sEmail, String sPassword, String sBirthday, String sCompany) {
 
@@ -154,6 +168,12 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Checks if the email is valid
+     *
+     * @param email email to be tested
+     * @return a boolean true if valid
+     */
     private boolean isValidEmail(String email) {
         // create the EmailValidator instance
         EmailValidator validator = EmailValidator.getInstance();
@@ -162,6 +182,12 @@ public class RegisterActivity extends AppCompatActivity {
         return validator.isValid(email);
     }
 
+    /**
+     * Takes the String including a Date and works with it to return a Date
+     *
+     * @param birthday String including date (dd.mm.yyyy)
+     * @return a Date Object
+     */
     private Date splitBirthdayString(String birthday) {
         Log.d(TAG, "splitBirthdayString: RegisterActivity");
         String[] splitBday = birthday.split("\\.");
@@ -169,23 +195,32 @@ public class RegisterActivity extends AppCompatActivity {
         int month;
         int year;
 
-        if (splitBday.length == 3){
-             day = Integer.parseInt(splitBday[0]);
-             month = Integer.parseInt(splitBday[1]);
-             year = Integer.parseInt(splitBday[2]);
+        if (splitBday.length == 3) {
+            day = Integer.parseInt(splitBday[0]);
+            month = Integer.parseInt(splitBday[1]);
+            year = Integer.parseInt(splitBday[2]);
 
         } else {
-             day = Integer.parseInt(splitBday[0].substring(0,2));
-             month = Integer.parseInt(splitBday[0].substring(2,4));
-             year = Integer.parseInt(splitBday[0].substring(4,8));
+            day = Integer.parseInt(splitBday[0].substring(0, 2));
+            month = Integer.parseInt(splitBday[0].substring(2, 4));
+            year = Integer.parseInt(splitBday[0].substring(4, 8));
         }
         return new Date(year, month - 1, day);
     }
 
+    /**
+     * Checks if the Email is already in the database
+     *
+     * @param email email to be checked
+     * @return a boolean
+     */
     private boolean checkIfEmailIsInDb(String email) {
         return userDao.getUser(email) != null;
     }
 
+    /**
+     * Go back to last Activity
+     */
     private void registerButtonAction() {
         Log.d(TAG, "Back to Login with Register button");
         finish();
