@@ -1,6 +1,7 @@
 package ch.noseryoung.invist;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -22,9 +23,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import ch.noseryoung.invist.model.User;
+import ch.noseryoung.invist.persistence.AppDatabase;
+import ch.noseryoung.invist.persistence.UserDao;
+
 public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "ch.noseryoung.invist.HomeActivity";
+    private UserDao userDao;
     private AppBarConfiguration mAppBarConfiguration;
 
     @SuppressLint("SetTextI18n")
@@ -39,6 +45,9 @@ public class HomeActivity extends AppCompatActivity {
 
         Menu m = navigationView.getMenu();
         MenuItem menuItem = m.add(R.string.logout).setIcon(R.drawable.logoutarrow);
+
+        //Get the userDao
+        userDao = AppDatabase.getAppDb(getApplicationContext()).getUserDao();
 
 
         // Passing each menu ID as a set of Ids because each
@@ -57,6 +66,9 @@ public class HomeActivity extends AppCompatActivity {
         TextView drawerName = (TextView) headerView.findViewById(R.id.drawerName);
         TextView drawerEmail = (TextView) headerView.findViewById(R.id.drawerEmail);
         ImageView drawerUserImage = headerView.findViewById(R.id.draweruserImage);
+
+
+
         drawerName.setText("Dennis Miceli");
         drawerEmail.setText("dennis.miceli@hotmail.ch");
 
@@ -64,9 +76,15 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                SharedPreferences invistPrefs = getSharedPreferences("invistPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = invistPrefs.edit();
+                editor.remove("activeUser");
+                editor.apply();
+
                 Log.d(TAG,"Logout button clicked");
                 finish();
                 return false;
