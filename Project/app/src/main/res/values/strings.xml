@@ -16,13 +16,14 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="logout">Logout</string>
-    <string name="wrongEmaileOrPassword">Passwort oder E-Mail falsch</string>
+
     <string name="blank"> </string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
 
+    <!--Fields User-->
     <string name="firstname">Vorname</string>
     <string name="lastname">Nachname</string>
     <string name="birthday">Geburtstag</string>
@@ -32,8 +33,22 @@
     <string name="postcode">PLZ</string>
     <string name="city">Ort</string>
 
+
+    <!-- ErrorMessages -->
     <string name="notAllFieldsFilledError">Bitte alle Felder ausfüllen</string>
     <string name="EmailAlreadyExist">Diese Email-Adresse wurde schon einem Konto zugewiesen</string>
+    <string name="wrongEmaileOrPassword">Passwort oder E-Mail falsch</string>
+    <string name="invalidFirstname">Ungültiger Vorname</string>
+    <string name="invalidLastname">Ungültiger Nachname</string>
+    <string name="invalidEmail">Ungültige Email</string>
+    <string name="invalidPassword">Ungültiges Passwort (min. 6 Zeichen, mind 1 Sonderzeichen,\n Grossbuchstabe, Kleinbuchstabe, Zahl)</string>
+    <string name="invalidBirthday">Ungültiger Geburtstag</string>
+    <string name="invalidPhoneNumber">Ungültige Telefonnummer</string>
+    <string name="invalidAddress">Ungültige Adresse</string>
+    <string name="invalidCity">Ungültige Stadt</string>
+    <string name="invalidPostCode">Ungültige Postleitzahl</string>
+
+
 
     <string-array name="companyArray">
         <item>NoserYoung</item>
