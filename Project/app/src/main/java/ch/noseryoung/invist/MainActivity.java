@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        insertDummyDennis("dennis.miceli@hotmail.ch");
+        insertDummyDennis("th3craft3r293@gmail.com");
         insertDummyNikolai("nikolai.schunk@gmail.com");
 
     }
@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean checkIfEmailIsInDb(String email) {
         return userDao.getUser(email) != null;
     }
+
 
     public void insertDummyDennis(String email) {
         if (!checkIfEmailIsInDb(email)) {

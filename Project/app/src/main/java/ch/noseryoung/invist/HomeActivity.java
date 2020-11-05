@@ -13,9 +13,7 @@ import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.customview.widget.Openable;
+import androidx.lifecycle.MutableLiveData;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -23,6 +21,8 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import org.w3c.dom.Text;
 
 import ch.noseryoung.invist.model.User;
 import ch.noseryoung.invist.persistence.AppDatabase;
@@ -63,7 +63,7 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
-        fillDrawerProperties(navigationView);
+        fillProperties(navigationView);
 
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
@@ -81,7 +81,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @SuppressLint("SetTextI18n")
-    public void fillDrawerProperties(NavigationView navigationView){
+    public void fillProperties(NavigationView navigationView){
         View headerView = navigationView.getHeaderView(0);
         TextView drawerName = (TextView) headerView.findViewById(R.id.drawerName);
         TextView drawerEmail = (TextView) headerView.findViewById(R.id.drawerEmail);
@@ -96,6 +96,8 @@ public class HomeActivity extends AppCompatActivity {
 
         drawerName.setText(user.getFirstname() + " " + user.getLastname());
         drawerEmail.setText(user.getEmail());
+
+
     }
 
 
