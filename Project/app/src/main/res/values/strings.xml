@@ -34,7 +34,7 @@
     <string name="mandatoryField">*</string>
 
     <!-- ErrorMessages -->
-    <string name="notAllFieldsFilledError">Bitte alle Felder ausfüllen</string>
+    <string name="notAllFieldsFilledError">Bitte alle Pflichtfelder ausfüllen</string>
     <string name="EmailAlreadyExist">Diese Email-Adresse wurde schon einem Konto zugewiesen</string>
     <string name="wrongEmaileOrPassword">Passwort oder E-Mail falsch</string>
     <string name="invalidFirstname">Ungültiger Vorname</string>
