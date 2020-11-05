@@ -23,7 +23,7 @@
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:autofillHints="@string/autofillEmail"
+        android:autofillHints="@string/Email"
         android:ems="10"
         android:hint="@string/Email"
         android:inputType="textEmailAddress"
