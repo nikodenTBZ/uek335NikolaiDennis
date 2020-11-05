@@ -152,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(userTemp.getAddress());
             System.out.println(userTemp.getCity());
             System.out.println(userTemp.getPostcode());
+            System.out.println(userTemp.getPassword());
 
         }
     }

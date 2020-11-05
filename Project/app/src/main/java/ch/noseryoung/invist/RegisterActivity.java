@@ -101,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             if (sPostcode.matches("[0-9]{4,}")) {
 
                                                 Date actualBirthday = splitBirthdayString(sBirthday);
-                                                User user = new User(sFirstName, sLastName, sEmail, sPassword, actualBirthday, sCompany, sPhoneNumber, sAddress, sCity, sPostcode);
+                                                User user = new User(sEmail, sFirstName, sLastName, sPassword, actualBirthday, sCompany, sPhoneNumber, sAddress, sCity, sPostcode);
                                                 userDao.insertUser(user);
                                                 registerButtonAction();
                                                 Log.d(TAG, "Registered Successfully");
