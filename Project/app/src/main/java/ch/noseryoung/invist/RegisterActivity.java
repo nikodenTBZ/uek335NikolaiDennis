@@ -84,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
         String sCity = city.getText().toString();
         String sPostcode = postcode.getText().toString();
 
-        if (!AreAllFieldsFilled(sFirstName, sLastName, sEmail, sPassword, sBirthday, sCompany, sPhoneNumber, sAddress, sCity, sPostcode)) {
+        if (!AreAllFieldsFilled(sFirstName, sLastName, sEmail, sPassword, sBirthday, sCompany)) {
             errorTextView.setText(R.string.notAllFieldsFilledError);
             Log.d(TAG, "ERROR, not all Fields are Filled");
         } else if (checkIfEmailIsInDb(sEmail)) {
@@ -150,12 +150,11 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     public boolean AreAllFieldsFilled(String sFirstName, String sLastName, String
-            sEmail, String sPassword, String sBirthday, String sCompany, String sPhoneNumber, String
-                                              sAddress, String sCity, String sPostcode) {
+            sEmail, String sPassword, String sBirthday, String sCompany) {
 
         //checks if every Field isnt empty then return true
         return !sFirstName.matches("") && !sLastName.matches("") && !sEmail.matches("") && !sPassword.matches("") && !sBirthday.matches("") &&
-                !sCompany.matches("") && !sPhoneNumber.matches("") && !sAddress.matches("") && !sCity.matches("") && !sPostcode.matches("");
+                !sCompany.matches("");
 
     }
 
