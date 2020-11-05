@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void addToSharedPreferences(String email) {
+    private void addToSharedPreferences(String email) {
         SharedPreferences invistPrefs = getSharedPreferences("invistPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = invistPrefs.edit();
         editor.putString("activeUser", email);
@@ -133,8 +133,6 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(userTemp.getAddress());
             System.out.println(userTemp.getCity());
             System.out.println(userTemp.getPostcode());
-            System.out.println(userTemp.getPassword());
-
         }
     }
 
@@ -170,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    public void insertDummyDennis() {
+    private void insertDummyDennis() {
         String email = "th3craft3r293@gmail.com";
         if (!checkIfEmailIsInDb(email)) {
 
@@ -186,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void insertDummyNikolai() {
+    private void insertDummyNikolai() {
         String email = "nikolai.schunk@gmail.com";
         if (!checkIfEmailIsInDb(email)) {
             //================================================//

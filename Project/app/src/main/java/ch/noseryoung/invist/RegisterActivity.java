@@ -1,8 +1,6 @@
 package ch.noseryoung.invist;
 
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,12 +10,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import org.apache.commons.validator.routines.EmailValidator;
 import org.mindrot.jbcrypt.BCrypt;
 
-import java.util.Arrays;
 import java.util.Date;
 
 import ch.noseryoung.invist.model.User;
@@ -59,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    public void validateAndFillInDb() {
+    private void validateAndFillInDb() {
         TextView errorTextView = findViewById(R.id.registerErrorTextView);
 
         EditText firstName = findViewById(R.id.textviewFirstnameRegister);
@@ -84,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
         String sCity = city.getText().toString();
         String sPostcode = postcode.getText().toString();
 
-        if (!AreAllFieldsFilled(sFirstName, sLastName, sEmail, sPassword, sBirthday, sCompany)) {
+        if (!areAllFieldsFilled(sFirstName, sLastName, sEmail, sPassword, sBirthday, sCompany)) {
             errorTextView.setText(R.string.notAllFieldsFilledError);
             Log.d(TAG, "ERROR, not all Fields are Filled");
         } else if (checkIfEmailIsInDb(sEmail)) {
@@ -149,7 +145,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-    public boolean AreAllFieldsFilled(String sFirstName, String sLastName, String
+    private boolean areAllFieldsFilled(String sFirstName, String sLastName, String
             sEmail, String sPassword, String sBirthday, String sCompany) {
 
         //checks if every Field isnt empty then return true
@@ -158,7 +154,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    public boolean isValidEmail(String email) {
+    private boolean isValidEmail(String email) {
         // create the EmailValidator instance
         EmailValidator validator = EmailValidator.getInstance();
 
@@ -166,7 +162,7 @@ public class RegisterActivity extends AppCompatActivity {
         return validator.isValid(email);
     }
 
-    public Date splitBirthdayString(String birthday) {
+    private Date splitBirthdayString(String birthday) {
         Log.d(TAG, "splitBirthdayString: RegisterActivity");
         String[] splitBday = birthday.split("\\.");
         int day;

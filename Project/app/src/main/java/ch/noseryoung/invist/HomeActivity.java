@@ -81,7 +81,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @SuppressLint("SetTextI18n")
-    public void fillProperties(NavigationView navigationView){
+    private void fillProperties(NavigationView navigationView){
         View headerView = navigationView.getHeaderView(0);
         TextView drawerName = (TextView) headerView.findViewById(R.id.drawerName);
         TextView drawerEmail = (TextView) headerView.findViewById(R.id.drawerEmail);
