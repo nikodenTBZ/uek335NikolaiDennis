@@ -91,15 +91,15 @@ public class RegisterActivity extends AppCompatActivity {
             errorTextView.setText(R.string.EmailAlreadyExist);
             Log.d(TAG, "ERROR, Email exist already");
         } else {
-            if (sFirstName.matches("[A-Za-z- äöü]{2,}")) {
-                if (sLastName.matches("[A-Za-z- äöü]{2,}")) {
-                    if (isValidEmail(sEmail)) {
+            if (sFirstName.matches("[A-Za-z- äöü]{2,50}")) {
+                if (sLastName.matches("[A-Za-z- äöü]{2,50}")) {
+                    if (isValidEmail(sEmail) && sEmail.matches("[2,100]")) {
                         if (sPassword.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&.,])[A-Za-z\\d@$!%*?&.,]{6,}$")) {
                             if (sBirthday.matches("[0-9]{2}.[0-9]{2}.[0-9]{4}")) {
                                 if (sPhoneNumber.matches("\\+?[0-9 ]{10,}")) {
-                                    if (sAddress.matches("[A-Za-z- äöü]+[0-9a-z]{1,4}")) {
+                                    if (sAddress.matches("([A-Za-z- äöü]+[0-9a-z]{1,4}){255}")) {
                                         if (sCity.matches("[A-Za-z äöü]+")) {
-                                            if (sPostcode.matches("[0-9]{4,}")) {
+                                            if (sPostcode.matches("[0-9]{4}")) {
 
                                                 String hashedPw = BCrypt.hashpw(sPassword, BCrypt.gensalt());
 
