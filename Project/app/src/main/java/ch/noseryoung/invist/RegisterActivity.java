@@ -1,6 +1,8 @@
 package ch.noseryoung.invist;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -10,9 +12,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
+import java.util.Arrays;
 import java.util.Date;
 
 import ch.noseryoung.invist.model.User;
@@ -34,6 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         //Add a back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.register);
+
 
         Spinner spinner = findViewById(R.id.spinnerCompanyRegister);
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(
@@ -160,7 +165,9 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public Date splitBirthdayString(String birthday) {
-        String[] splitBday = birthday.split(".");
+        System.out.println(birthday);
+        String[] splitBday = birthday.split("\\.");
+        System.out.println(Arrays.toString(splitBday));
         int day = Integer.parseInt(splitBday[0]);
         int month = Integer.parseInt(splitBday[1]);
         int year = Integer.parseInt(splitBday[2]);

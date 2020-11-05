@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.customview.widget.Openable;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -43,6 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
+
         Menu m = navigationView.getMenu();
         MenuItem menuItem = m.add(R.string.logout).setIcon(R.drawable.logoutarrow);
 
@@ -61,21 +63,7 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
-
-        View headerView = navigationView.getHeaderView(0);
-        TextView drawerName = (TextView) headerView.findViewById(R.id.drawerName);
-        TextView drawerEmail = (TextView) headerView.findViewById(R.id.drawerEmail);
-        ImageView drawerUserImage = headerView.findViewById(R.id.draweruserImage);
-
-
-
-        drawerName.setText("Dennis Miceli");
-        drawerEmail.setText("dennis.miceli@hotmail.ch");
-
-        //drawerUserImage.setBackgroundResource(R.drawable.usericon);
-
-
-
+        fillDrawerProperties(navigationView);
 
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
@@ -90,6 +78,24 @@ public class HomeActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void fillDrawerProperties(NavigationView navigationView){
+        View headerView = navigationView.getHeaderView(0);
+        TextView drawerName = (TextView) headerView.findViewById(R.id.drawerName);
+        TextView drawerEmail = (TextView) headerView.findViewById(R.id.drawerEmail);
+        ImageView drawerUserImage = headerView.findViewById(R.id.draweruserImage);
+
+        SharedPreferences invistPrefs = getSharedPreferences("invistPrefs", MODE_PRIVATE);
+        String email = invistPrefs.getString("activeUser", "default");
+
+        User user = userDao.getUser(email);
+
+
+
+        drawerName.setText(user.getFirstname() + " " + user.getLastname());
+        drawerEmail.setText(user.getEmail());
     }
 
 
