@@ -73,8 +73,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        insertDummyDennis("th3craft3r293@gmail.com");
-        insertDummyNikolai("nikolai.schunk@gmail.com");
+
+        //Method to fill in users
+        //insertDummyDennis();
+        //insertDummyNikolai();
 
     }
 
@@ -116,32 +118,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void insertDummyDennis(String email) {
-        if (!checkIfEmailIsInDb(email)) {
 
-            //================================================//
-            User userDennis = new User("th3craft3r293@gmail.com", "Dennis", "Miceli", BCrypt.hashpw("123456", BCrypt.gensalt()), new Date(2003, 8, 2), "Accenture", "076 429 66 80", "Bahnhofstrasse 15", "Altendorf", "8852");
-
-            Log.d(TAG, "Created new User");
-            //================================================//
-
-            userDao.insertUser(userDennis);
-            Log.d(TAG, "Insert new User to DB");
-            //================================================//
-        }
-    }
-
-    public void insertDummyNikolai(String email) {
-        if (!checkIfEmailIsInDb(email)) {
-            //================================================//
-            User userNikolai = new User("nikolai.schunk@gmail.com", "Nikolai", "Schunk", BCrypt.hashpw("ABC123",BCrypt.gensalt()), new Date(2003, 10, 29), "Accenture", "078 406 73 65", "Hohenbühlstrasse 8", "Zürich", "8032");
-            Log.d(TAG, "Created new User");
-            //================================================//
-            userDao.insertUser(userNikolai);
-            Log.d(TAG, "Insert User to DB");
-            //================================================//
-        }
-    }
 
     private void getAllUserFromDB() {
         List<User> userList = userDao.getAll();
@@ -191,6 +168,35 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         Log.d(TAG, "onDestroy: MainActivity");
         super.onDestroy();
+    }
+
+    public void insertDummyDennis() {
+        String email = "th3craft3r293@gmail.com";
+        if (!checkIfEmailIsInDb(email)) {
+
+            //================================================//
+            User userDennis = new User(email, "Dennis", "Miceli", BCrypt.hashpw("123456", BCrypt.gensalt()), new Date(2003, 8, 2), "Accenture", "076 429 66 80", "Bahnhofstrasse 15", "Altendorf", "8852");
+
+            Log.d(TAG, "Created new User");
+            //================================================//
+
+            userDao.insertUser(userDennis);
+            Log.d(TAG, "Insert new User to DB");
+            //================================================//
+        }
+    }
+
+    public void insertDummyNikolai() {
+        String email = "nikolai.schunk@gmail.com";
+        if (!checkIfEmailIsInDb(email)) {
+            //================================================//
+            User userNikolai = new User(email, "Nikolai", "Schunk", BCrypt.hashpw("ABC123",BCrypt.gensalt()), new Date(2003, 10, 29), "Accenture", "078 406 73 65", "Hohenbühlstrasse 8", "Zürich", "8032");
+            Log.d(TAG, "Created new User");
+            //================================================//
+            userDao.insertUser(userNikolai);
+            Log.d(TAG, "Insert User to DB");
+            //================================================//
+        }
     }
 
 

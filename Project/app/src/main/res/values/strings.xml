@@ -7,8 +7,8 @@
     <string name="login">Einloggen</string>
     <string name="noText"> </string>
     <string name="title_activity_home">HomeActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Navigation Drawer öffnen</string>
+    <string name="navigation_drawer_close">Navigation Drawer schliessen</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
@@ -33,6 +33,8 @@
     <string name="postcode">PLZ</string>
     <string name="city">Ort</string>
     <string name="mandatoryField">*</string>
+    <string name="loginEmail">E-Mail</string>
+    <string name="loginPassword">Passwort</string>
 
     <!-- ErrorMessages -->
     <string name="notAllFieldsFilledError">Bitte alle Pflichtfelder ausfüllen</string>
