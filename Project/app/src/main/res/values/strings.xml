@@ -45,7 +45,7 @@
     <string name="invalidEmail">Ungültige Email</string>
     <string name="invalidPassword">Ungültiges Passwort (min. 6 Zeichen, mind 1 Sonderzeichen,\n Grossbuchstabe, Kleinbuchstabe, Zahl)</string>
     <string name="invalidBirthday">Ungültiger Geburtstag</string>
-    <string name="invalidPhoneNumber">Ungültige Telefonnummer (Keine Abstände erlaubt)</string>
+    <string name="invalidPhoneNumber">Ungültige Telefonnummer</string>
     <string name="invalidAddress">Ungültige Adresse</string>
     <string name="invalidCity">Ungültige Stadt</string>
     <string name="invalidPostCode">Ungültige Postleitzahl</string>
