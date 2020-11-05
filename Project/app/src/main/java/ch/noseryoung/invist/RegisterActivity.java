@@ -93,13 +93,13 @@ public class RegisterActivity extends AppCompatActivity {
         } else {
             if (sFirstName.matches("[A-Za-z- äöü]{2,50}")) {
                 if (sLastName.matches("[A-Za-z- äöü]{2,50}")) {
-                    if (isValidEmail(sEmail) && sEmail.matches("[2,100]")) {
+                    if (isValidEmail(sEmail) && sEmail.length() <= 100) {
                         if (sPassword.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&.,])[A-Za-z\\d@$!%*?&.,]{6,}$")) {
-                            if (sBirthday.matches("[0-9]{2}.[0-9]{2}.[0-9]{4}")) {
-                                if (sPhoneNumber.matches("\\+?[0-9 ]{10,}")) {
-                                    if (sAddress.matches("([A-Za-z- äöü]+[0-9a-z]{1,4}){255}")) {
-                                        if (sCity.matches("[A-Za-z äöü]+")) {
-                                            if (sPostcode.matches("[0-9]{4}")) {
+                            if (sBirthday.matches("[0-9]{2}.[0-9]{2}.[0-9]{4}") || sBirthday.matches("[0-9]{8}")) {
+                                if (sPhoneNumber.matches("\\+?[0-9 ]{10,}") || sPhoneNumber.length() == 0) {
+                                    if (sAddress.matches("([A-Za-z- äöü]+[0-9a-z]{1,4}){1,255}") || sAddress.length() == 0) {
+                                        if (sCity.matches("[A-Za-z äöü]{1,50}") || sCity.length() == 0) {
+                                            if (sPostcode.matches("[0-9]{4}") || sCity.length() == 0) {
 
                                                 String hashedPw = BCrypt.hashpw(sPassword, BCrypt.gensalt());
 
@@ -167,14 +167,23 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public Date splitBirthdayString(String birthday) {
-        System.out.println(birthday);
+        Log.d(TAG, "splitBirthdayString: RegisterActivity");
         String[] splitBday = birthday.split("\\.");
-        System.out.println(Arrays.toString(splitBday));
-        int day = Integer.parseInt(splitBday[0]);
-        int month = Integer.parseInt(splitBday[1]);
-        int year = Integer.parseInt(splitBday[2]);
-        return new Date(year, month - 1, day);
+        int day;
+        int month;
+        int year;
 
+        if (splitBday.length == 3){
+             day = Integer.parseInt(splitBday[0]);
+             month = Integer.parseInt(splitBday[1]);
+             year = Integer.parseInt(splitBday[2]);
+
+        } else {
+             day = Integer.parseInt(splitBday[0].substring(0,2));
+             month = Integer.parseInt(splitBday[0].substring(2,4));
+             year = Integer.parseInt(splitBday[0].substring(4,8));
+        }
+        return new Date(year, month - 1, day);
     }
 
     private boolean checkIfEmailIsInDb(String email) {
