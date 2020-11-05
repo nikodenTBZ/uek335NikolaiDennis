@@ -23,9 +23,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import ch.noseryoung.invist.model.User;
+import ch.noseryoung.invist.persistence.AppDatabase;
+import ch.noseryoung.invist.persistence.UserDao;
+
 public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "ch.noseryoung.invist.HomeActivity";
+    private UserDao userDao;
     private AppBarConfiguration mAppBarConfiguration;
 
     @SuppressLint("SetTextI18n")
@@ -41,6 +46,8 @@ public class HomeActivity extends AppCompatActivity {
         Menu m = navigationView.getMenu();
         MenuItem menuItem = m.add(R.string.logout).setIcon(R.drawable.logoutarrow);
 
+        //Get the userDao
+        userDao = AppDatabase.getAppDb(getApplicationContext()).getUserDao();
 
 
         // Passing each menu ID as a set of Ids because each
@@ -59,10 +66,14 @@ public class HomeActivity extends AppCompatActivity {
         TextView drawerName = (TextView) headerView.findViewById(R.id.drawerName);
         TextView drawerEmail = (TextView) headerView.findViewById(R.id.drawerEmail);
         ImageView drawerUserImage = headerView.findViewById(R.id.draweruserImage);
+
+
+
         drawerName.setText("Dennis Miceli");
         drawerEmail.setText("dennis.miceli@hotmail.ch");
 
         //drawerUserImage.setBackgroundResource(R.drawable.usericon);
+
 
 
 

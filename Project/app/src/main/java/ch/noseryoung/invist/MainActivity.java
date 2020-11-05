@@ -1,6 +1,5 @@
 package ch.noseryoung.invist;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -44,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
 
         userDao = AppDatabase.getAppDb(getApplicationContext()).getUserDao();
 
+        //Open the HomeActivity if the User is still logged in
+        SharedPreferences invistPrefs = getSharedPreferences("invistPrefs", MODE_PRIVATE);
+        if (invistPrefs.contains("activeUser")) {
+            openHomeActivity();
+        }
+
 
         //Remove Action Bar
         getSupportActionBar().hide();
@@ -69,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
         insertDummyDennis("dennis.miceli@hotmail.ch");
         insertDummyNikolai("nikolai.schunk@gmail.com");
 
-
     }
 
     private void validateFieldsAndLogin() {
@@ -92,13 +96,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void addToSharedPreferences(String email){
+    public void addToSharedPreferences(String email) {
         SharedPreferences invistPrefs = getSharedPreferences("invistPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = invistPrefs.edit();
         editor.putString("activeUser", email);
         editor.apply();
     }
-
 
 
     private void showErrorLoginMessage() {
@@ -113,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         if (!checkIfEmailIsInDb(email)) {
 
             //================================================//
-            User userDennis = new User("dennis.miceli@hotmail.ch", "Dennis", "Miceli", "123456", new Date(2003,8,2), "Accenture", "076 429 66 80", "Bahnhofstrasse 15", "Altendorf", "8852");
+            User userDennis = new User("dennis.miceli@hotmail.ch", "Dennis", "Miceli", "123456", new Date(2003, 8, 2), "Accenture", "076 429 66 80", "Bahnhofstrasse 15", "Altendorf", "8852");
 
             Log.d(TAG, "Created new User");
             //================================================//
@@ -127,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
     public void insertDummyNikolai(String email) {
         if (!checkIfEmailIsInDb(email)) {
             //================================================//
-            User userNikolai = new User("nikolai.schunk@gmail.com","Nikolai","Schunk","ABC123", new Date(2003, 10, 29),"Accenture", "078 406 73 65", "Hohenbühlstrasse 8", "Zürich", "8032");
+            User userNikolai = new User("nikolai.schunk@gmail.com", "Nikolai", "Schunk", "ABC123", new Date(2003, 10, 29), "Accenture", "078 406 73 65", "Hohenbühlstrasse 8", "Zürich", "8032");
             Log.d(TAG, "Created new User");
             //================================================//
             userDao.insertUser(userNikolai);
