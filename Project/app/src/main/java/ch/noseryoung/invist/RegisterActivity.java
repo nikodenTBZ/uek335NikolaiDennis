@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.apache.commons.validator.routines.EmailValidator;
+
 import java.util.Date;
 
 import ch.noseryoung.invist.model.User;
@@ -83,13 +85,23 @@ public class RegisterActivity extends AppCompatActivity {
             fieldsEmpty.setText(R.string.EmailAlreadyExist);
             Log.d(TAG, "ERROR, Email exist already");
         } else {
-            Date actualBirthday = splitBirthdayString(sBirthday);
-            User user = new User(sFirstName, sLastName, sEmail, sPassword, actualBirthday, sCompany, sPhoneNumber, sAddress, sCity, sPostcode);
-            registerButtonAction();
-            Log.d(TAG, "Registered Successfully");
+            if (sFirstName.matches("[A-Za-z- ]+")) {
+                if (sLastName.matches("[A-Za-z- ]+")) {
+                    if (isValidEmail(sEmail)) {
+
+                    } else {
+                    }
+                } else {
+
+                }
+            } else {
+                Date actualBirthday = splitBirthdayString(sBirthday);
+                User user = new User(sFirstName, sLastName, sEmail, sPassword, actualBirthday, sCompany, sPhoneNumber, sAddress, sCity, sPostcode);
+                registerButtonAction();
+                Log.d(TAG, "Registered Successfully");
+            }
         }
     }
-
     public boolean AreAllFieldsFilled(String sFirstName, String sLastName, String sEmail, String sPassword, String sBirthday, String sCompany, String sPhoneNumber, String sAddress, String sCity, String sPostcode) {
 
         //checks if every Field isnt empty then return true
@@ -98,12 +110,20 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    public boolean isValidEmail(String email) {
+        // create the EmailValidator instance
+        EmailValidator validator = EmailValidator.getInstance();
+
+        // check for valid email addresses using isValid method
+        return validator.isValid(email);
+    }
+
     public Date splitBirthdayString(String birthday) {
         String[] splitBday = birthday.split(".");
         int day = Integer.parseInt(splitBday[0]);
         int month = Integer.parseInt(splitBday[1]);
         int year = Integer.parseInt(splitBday[2]);
-        return new Date(year, month -1, day);
+        return new Date(year, month - 1, day);
 
     }
 
