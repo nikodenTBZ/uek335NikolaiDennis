@@ -1,10 +1,7 @@
 <resources>
     <string name="app_name">Invist</string>
     <string name="app_Logo">NOALogo</string>
-    <string name="autofillEmail">e-mail</string>
-    <string name="autofillPassword">Passwort</string>
-    <string name="Email">E-Mail</string>
-    <string name="Password">Passwort</string>
+
     <string name="noAccount">Noch kein Konto?</string>
     <string name="register">Registrieren</string>
     <string name="login">Einloggen</string>
@@ -24,15 +21,17 @@
     <string name="menu_slideshow">Slideshow</string>
 
     <!--Fields User-->
-    <string name="firstname">Vorname</string>
-    <string name="lastname">Nachname</string>
-    <string name="birthday">Geburtstag</string>
-    <string name="company">Arbeitgeber</string>
+    <string name="firstname">Vorname*</string>
+    <string name="lastname">Nachname*</string>
+    <string name="Email">E-Mail*</string>
+    <string name="Password">Passwort*</string>
+    <string name="birthday">Geburtstag*</string>
+    <string name="company">Arbeitgeber*</string>
     <string name="phone_number">Telefonummer</string>
     <string name="address">Adresse</string>
     <string name="postcode">PLZ</string>
     <string name="city">Ort</string>
-
+    <string name="mandatoryField">*</string>
 
     <!-- ErrorMessages -->
     <string name="notAllFieldsFilledError">Bitte alle Felder ausfüllen</string>
@@ -47,7 +46,6 @@
     <string name="invalidAddress">Ungültige Adresse</string>
     <string name="invalidCity">Ungültige Stadt</string>
     <string name="invalidPostCode">Ungültige Postleitzahl</string>
-
 
 
     <string-array name="companyArray">
