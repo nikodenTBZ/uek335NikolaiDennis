@@ -14,9 +14,15 @@ public abstract class AppDatabase extends RoomDatabase {
     private static final String DB_NAME = "InvistDB";
     private static AppDatabase appdb;
 
-    public static AppDatabase getAppDb(Context context){
-        if (appdb == null){
-            appdb = Room.databaseBuilder(context,AppDatabase.class, DB_NAME)
+    /**
+     * Returns a AppDatabase
+     *
+     * @param context
+     * @return
+     */
+    public static AppDatabase getAppDb(Context context) {
+        if (appdb == null) {
+            appdb = Room.databaseBuilder(context, AppDatabase.class, DB_NAME)
                     .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()
                     .build();
