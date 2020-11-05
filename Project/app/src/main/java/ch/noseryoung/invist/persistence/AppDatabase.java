@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 
 import ch.noseryoung.invist.model.User;
 
-@Database(entities = {User.class}, version = 2)
+@Database(entities = {User.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String DB_NAME = "InvistDB";

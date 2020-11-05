@@ -37,19 +37,16 @@ public class User {
     private String company;
 
     @ColumnInfo(name = "phone_number")
-    @NonNull
     private String phoneNumber;
 
-    @NonNull
     private String address;
 
-    @NonNull
     private String city;
 
-    @NonNull
     private String postcode;
 
-    public User(@NonNull String email, @NonNull String firstname, @NonNull String lastname, @NonNull String password, @NonNull Date birthday, @NonNull String company, @NonNull String phoneNumber, @NonNull String address, @NonNull String city, @NonNull String postcode) {
+    public User(@NonNull String email, @NonNull String firstname, @NonNull String lastname, @NonNull String password,
+                @NonNull Date birthday, @NonNull String company, String phoneNumber, String address, String city, String postcode) {
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
