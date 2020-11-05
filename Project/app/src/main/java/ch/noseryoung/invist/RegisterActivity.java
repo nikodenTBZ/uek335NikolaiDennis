@@ -97,6 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                                                 Date actualBirthday = splitBirthdayString(sBirthday);
                                                 User user = new User(sFirstName, sLastName, sEmail, sPassword, actualBirthday, sCompany, sPhoneNumber, sAddress, sCity, sPostcode);
+                                                userDao.insertUser(user);
                                                 registerButtonAction();
                                                 Log.d(TAG, "Registered Successfully");
 
