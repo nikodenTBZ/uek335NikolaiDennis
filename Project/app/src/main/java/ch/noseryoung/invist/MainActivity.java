@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.util.Date;
 import java.util.List;
 
@@ -76,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     private void validateFieldsAndLogin() {
 
         TextView emailTextView = (TextView) findViewById(R.id.emailLogin);
@@ -84,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         String password = passwordTextView.getText().toString();
 
         if (checkIfEmailIsInDb(email)) {
-            if (userDao.getUser(email).getPassword().equals(password)) {
+            if (BCrypt.checkpw(password,userDao.getUser(email).getPassword())) {
                 addToSharedPreferences(email);
                 openHomeActivity();
             } else {
@@ -116,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         if (!checkIfEmailIsInDb(email)) {
 
             //================================================//
-            User userDennis = new User("dennis.miceli@hotmail.ch", "Dennis", "Miceli", "123456", new Date(2003, 8, 2), "Accenture", "076 429 66 80", "Bahnhofstrasse 15", "Altendorf", "8852");
+            User userDennis = new User("th3craft3r293@gmail.com", "Dennis", "Miceli", BCrypt.hashpw("123456", BCrypt.gensalt()), new Date(2003, 8, 2), "Accenture", "076 429 66 80", "Bahnhofstrasse 15", "Altendorf", "8852");
 
             Log.d(TAG, "Created new User");
             //================================================//
@@ -130,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
     public void insertDummyNikolai(String email) {
         if (!checkIfEmailIsInDb(email)) {
             //================================================//
-            User userNikolai = new User("nikolai.schunk@gmail.com", "Nikolai", "Schunk", "ABC123", new Date(2003, 10, 29), "Accenture", "078 406 73 65", "Hohenbühlstrasse 8", "Zürich", "8032");
+            User userNikolai = new User("nikolai.schunk@gmail.com", "Nikolai", "Schunk", BCrypt.hashpw("ABC123",BCrypt.gensalt()), new Date(2003, 10, 29), "Accenture", "078 406 73 65", "Hohenbühlstrasse 8", "Zürich", "8032");
             Log.d(TAG, "Created new User");
             //================================================//
             userDao.insertUser(userNikolai);

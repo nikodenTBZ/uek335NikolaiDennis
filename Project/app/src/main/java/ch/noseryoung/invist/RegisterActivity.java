@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import org.apache.commons.validator.routines.EmailValidator;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -100,8 +101,10 @@ public class RegisterActivity extends AppCompatActivity {
                                         if (sCity.matches("[A-Za-z äöü]+")) {
                                             if (sPostcode.matches("[0-9]{4,}")) {
 
+                                                String hashedPw = BCrypt.hashpw(sPassword, BCrypt.gensalt());
+
                                                 Date actualBirthday = splitBirthdayString(sBirthday);
-                                                User user = new User(sEmail, sFirstName, sLastName, sPassword, actualBirthday, sCompany, sPhoneNumber, sAddress, sCity, sPostcode);
+                                                User user = new User(sEmail, sFirstName, sLastName, hashedPw, actualBirthday, sCompany, sPhoneNumber, sAddress, sCity, sPostcode);
                                                 userDao.insertUser(user);
                                                 registerButtonAction();
                                                 Log.d(TAG, "Registered Successfully");

@@ -43,4 +43,9 @@ dependencies {
     implementation 'android.arch.persistence.room:runtime:1.0.0'
     annotationProcessor 'android.arch.persistence.room:compiler:1.0.0'
     implementation group: 'commons-validator', name: 'commons-validator', version: '1.4.0'
+
+// https://mvnrepository.com/artifact/org.mindrot/jbcrypt
+    implementation group: 'org.mindrot', name: 'jbcrypt', version: '0.4'
+
+
 }
