@@ -54,6 +54,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void validateAndFillInDb() {
+        TextView errorTextView = findViewById(R.id.registerErrorTextView);
+
         EditText firstName = findViewById(R.id.textviewFirstnameRegister);
         EditText lastName = findViewById(R.id.textviewLastnameRegister);
         EditText email = findViewById(R.id.textviewEmailRegister);
@@ -77,32 +79,70 @@ public class RegisterActivity extends AppCompatActivity {
         String sPostcode = postcode.getText().toString();
 
         if (!AreAllFieldsFilled(sFirstName, sLastName, sEmail, sPassword, sBirthday, sCompany, sPhoneNumber, sAddress, sCity, sPostcode)) {
-            TextView fieldsEmpty = findViewById(R.id.registerErrorTextView);
-            fieldsEmpty.setText(R.string.notAllFieldsFilledError);
+            errorTextView.setText(R.string.notAllFieldsFilledError);
             Log.d(TAG, "ERROR, not all Fields are Filled");
         } else if (checkIfEmailIsInDb(sEmail)) {
-            TextView fieldsEmpty = findViewById(R.id.registerErrorTextView);
-            fieldsEmpty.setText(R.string.EmailAlreadyExist);
+            errorTextView.setText(R.string.EmailAlreadyExist);
             Log.d(TAG, "ERROR, Email exist already");
         } else {
-            if (sFirstName.matches("[A-Za-z- ]+")) {
-                if (sLastName.matches("[A-Za-z- ]+")) {
+            if (sFirstName.matches("[A-Za-z- äöü]{2,}")) {
+                if (sLastName.matches("[A-Za-z- äöü]{2,}")) {
                     if (isValidEmail(sEmail)) {
+                        if (sPassword.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&.,])[A-Za-z\\d@$!%*?&.,]{6,}$")) {
+                            if (sBirthday.matches("[0-9]{2}.[0-9]{2}.[0-9]{4}")) {
+                                if (sPhoneNumber.matches("\\+?[0-9 ]{10,}")) {
+                                    if (sAddress.matches("[A-Za-z- äöü]+[0-9a-z]{1,4}")) {
+                                        if (sCity.matches("[A-Za-z äöü]+")) {
+                                            if (sPostcode.matches("[0-9]{4,}")) {
 
+                                                Date actualBirthday = splitBirthdayString(sBirthday);
+                                                User user = new User(sFirstName, sLastName, sEmail, sPassword, actualBirthday, sCompany, sPhoneNumber, sAddress, sCity, sPostcode);
+                                                registerButtonAction();
+                                                Log.d(TAG, "Registered Successfully");
+
+                                            } else {
+                                                errorTextView.setText(R.string.invalidPostCode);
+                                                Log.d(TAG, "ERROR, invalid Postcode");
+                                            }
+                                        } else {
+                                            errorTextView.setText(R.string.invalidCity);
+                                            Log.d(TAG, "ERROR, invalid City");
+                                        }
+                                    } else {
+                                        errorTextView.setText(R.string.invalidAddress);
+                                        Log.d(TAG, "ERROR, invalid Address");
+                                    }
+                                } else {
+                                    errorTextView.setText(R.string.invalidPhoneNumber);
+                                    Log.d(TAG, "ERROR, invalid PhoneNumber");
+                                }
+                            } else {
+                                errorTextView.setText(R.string.invalidBirthday);
+                                Log.d(TAG, "ERROR, invalid Birthday");
+                            }
+                        } else {
+                            errorTextView.setText(R.string.invalidPassword);
+                            Log.d(TAG, "ERROR, invalid Password");
+                        }
                     } else {
+                        errorTextView.setText(R.string.invalidEmail);
+                        Log.d(TAG, "ERROR, invalid Email");
                     }
                 } else {
-
+                    errorTextView.setText(R.string.invalidLastname);
+                    Log.d(TAG, "ERROR, invalid Lastname");
                 }
             } else {
-                Date actualBirthday = splitBirthdayString(sBirthday);
-                User user = new User(sFirstName, sLastName, sEmail, sPassword, actualBirthday, sCompany, sPhoneNumber, sAddress, sCity, sPostcode);
-                registerButtonAction();
-                Log.d(TAG, "Registered Successfully");
+                errorTextView.setText(R.string.invalidFirstname);
+                Log.d(TAG, "ERROR, invalid Firstname");
             }
         }
     }
-    public boolean AreAllFieldsFilled(String sFirstName, String sLastName, String sEmail, String sPassword, String sBirthday, String sCompany, String sPhoneNumber, String sAddress, String sCity, String sPostcode) {
+
+
+    public boolean AreAllFieldsFilled(String sFirstName, String sLastName, String
+            sEmail, String sPassword, String sBirthday, String sCompany, String sPhoneNumber, String
+                                              sAddress, String sCity, String sPostcode) {
 
         //checks if every Field isnt empty then return true
         return !sFirstName.matches("") && !sLastName.matches("") && !sEmail.matches("") && !sPassword.matches("") && !sBirthday.matches("") &&
