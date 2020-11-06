@@ -4,22 +4,32 @@ Folie 1 - Invist (Nikolai)
 -Willkommen heissen
 -Vorstellen
 
+Herlich Willkommen
+Wir freuen uns hier sein zu dürfen um Ihnen unsere Lösung für Ihr Problem vorzustellen.
+Wir haben 
 
 
 
 Folie 2 - Agenda (Nikolai)
 
 -Was wird gezeigt sagen
-
-
+- Agenda 
+- Unser Ziel (was genaz der Zweck der APP ist)
+- Unsere Planung
+- Wie schlussendlich das Ergebnis aussieht
+- Zeigen wir IHnen MockUp vs Realisation auf
+- Wie wir sichergestellt haben, das unsere Applikation auch einwandfrei Funktioniert.
 
 
 Folie 3 - Unser Ziel (Nikolai)
 
-Ziel war es, eine deutschsprachige Applikation für Android Geräte herzustellen, über welche sich eine Person 
-registrieren und danach einloggen kann. Für die Registrierung gibt er seine Daten ein, welche anschliessend 
-validiert werden. Diese Daten werden in einer Datenbank lokal auf dem Endgerät gespeichert. Mit der E-Mail-Adresse und einem zuvor gesetzten Passwort, welches mit einem Verschlüsslungs-Algorithmus verschlüsselt wurde, kann sich der Benutzer einloggen. Bei einer fehlgeschlagenen Anmeldung wird eine Fehlermeldung wiedergegeben. Bei einer erfolgreichen Anmeldung wird der Benutzer bei seinem Namen begrüsst. Der Nutzer hat dann die Möglichkeit sich wieder abzumelden, woraufhin er wieder den Login-Screen sieht. 
+Ziel war es, eine deutschsprachige Nativ Applikation für Android Geräte herzustellen, über welche sich eine Person registrieren und danach einloggen kann. 
 
+Wir haben uns für eine Nativ App entschiedne, da wir die Applikation komplett auf dem Endgerät haben wollen, bei beispielsweise bei einer WebApp nicht der Fall wäre. 
+
+Für die Registrierung gibt er seine Daten ein, welche anschliessend validiert werden. Diese Daten werden in einer Datenbank lokal auf dem Endgerät gespeichert. 
+Mit der E-Mail-Adresse und einem zuvor gesetzten Passwort, welches mit einem Verschlüsslungs-Algorithmus verschlüsselt wurde, kann sich der Benutzer einloggen. 
+Bei einer erfolgreichen Anmeldung wird der Benutzer bei seinem Namen begrüsst. Der Nutzer hat dann die Möglichkeit sich wieder abzumelden, woraufhin er wieder den Login-Screen sieht. 
 
 
 
