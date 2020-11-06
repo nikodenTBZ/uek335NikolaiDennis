@@ -1,0 +1,77 @@
+
+Folie 1 - Invist (Nikolai)
+
+-Willkommen heissen
+-Vorstellen
+
+
+
+
+Folie 2 - Agenda (Nikolai)
+
+-Was wird gezeigt sagen
+
+
+
+
+Folie 3 - Unser Ziel (Nikolai)
+
+Ziel war es, eine deutschsprachige Applikation für Android Geräte herzustellen, über welche sich eine Person 
+registrieren und danach einloggen kann. Für die Registrierung gibt er seine Daten ein, welche anschliessend 
+validiert werden. Diese Daten werden in einer Datenbank lokal auf dem Endgerät gespeichert. Mit der E-Mail-Adresse und einem zuvor gesetzten Passwort, welches mit einem Verschlüsslungs-Algorithmus verschlüsselt wurde, kann sich der Benutzer einloggen. Bei einer fehlgeschlagenen Anmeldung wird eine Fehlermeldung wiedergegeben. Bei einer erfolgreichen Anmeldung wird der Benutzer bei seinem Namen begrüsst. Der Nutzer hat dann die Möglichkeit sich wieder abzumelden, woraufhin er wieder den Login-Screen sieht. 
+
+
+
+
+
+Folie 4 - Unsere Planung (Dennis)
+
+-Mit Mockup
+-Figma zeigen
+
+
+
+Folie 5 - Unser Ergebnis (Dennis)
+
+
+-App Zeigen (App-Logo, Registrieren, Login, Home-Screen)
+
+
+
+Folie 6 - Mockup vs. Realisation (Dennis)
+
+
+
+-Sehr genau nach Mockup gearbeitet
+
+
+
+
+Folie 7 - Testing (Nikolai)
+
+
+-Grosszügiges Testing mit 22 Testszenarien
+
+
+
+
+Folie 8 - Wieso uns wählen? (Nikolai)
+
+
+-Workflow
+-Kostengünstig
+-Kommunikation untereinander und Kunde wichtig
+-Passion
+-Sicherheit wird beachtet
+-Detaillierte Dokumentation
+
+
+Folie 9 - Fragen (Dennis)
+
+
+-Nach Fragen fragen
+
+
+Folie 10 - Vielen Dank (Dennis)
+
+-Bedanken, Verabschieden
