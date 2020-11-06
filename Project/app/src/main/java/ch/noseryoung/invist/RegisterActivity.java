@@ -90,8 +90,8 @@ public class RegisterActivity extends AppCompatActivity {
             errorTextView.setText(R.string.EmailAlreadyExist);
             Log.d(TAG, "ERROR, Email exist already");
         } else {
-            if (sFirstName.matches("[A-Za-z- äöü]{2,50}")) {
-                if (sLastName.matches("[A-Za-z- äöü]{2,50}")) {
+            if (sFirstName.matches("[A-Za-z- äöüéèôêî]{2,50}")) {
+                if (sLastName.matches("[A-Za-z- äöüéèôêî]{2,50}")) {
                     if (isValidEmail(sEmail) && sEmail.length() <= 100) {
                         if (sPassword.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&.,])[A-Za-z\\d@$!%*?&.,]{6,}$")) {
                             if (sBirthday.matches("[0-9]{2}.[0-9]{2}.[0-9]{4}") || sBirthday.matches("[0-9]{8}")) {
